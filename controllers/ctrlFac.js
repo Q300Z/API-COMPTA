@@ -58,14 +58,14 @@ exports.modifyFac = async (req, res, next) => {
     }
 
     let preuve = fac.preuve;
-    if (req.file) {
+    if (req.file && req.file.filename) {
       preuve = `/images/${req.file.filename}`;
       // Supprimer l'ancien fichier image si un nouveau fichier a été téléchargé
       if (fac.preuve) {
         const filename = fac.preuve.split("/").pop();
         fs.unlink(`images/${filename}`, (err) => {
           if (err) {
-            console.error(err);
+            console.log(err);
           }
         });
       }
@@ -83,6 +83,7 @@ exports.modifyFac = async (req, res, next) => {
       .status(200)
       .json({ message: "Facture modifiée !", data: { preuve: preuve } });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       message: `Erreur lors de la modification de la facture : ${error}`,
     });

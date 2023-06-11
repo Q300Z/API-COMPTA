@@ -12,7 +12,7 @@ const host = "localhost";
 try {
   const db = connectDB();
 } catch (error) {
-  process.exit(1);
+  db.catch(() => connectDB());
 }
 app.use(express.json());
 
