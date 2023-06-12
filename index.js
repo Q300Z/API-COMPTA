@@ -7,7 +7,7 @@ const path = require("path");
 const app = express();
 
 const port = 3001;
-const host = "localhost";
+const host = "0.0.0.0";
 
 try {
   const db = connectDB();
