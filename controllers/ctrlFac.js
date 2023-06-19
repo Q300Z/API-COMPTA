@@ -58,6 +58,7 @@ exports.modifyFac = async (req, res, next) => {
     }
 
     let preuve = fac.preuve;
+    console.log(req.file, preuve, req.body.fac);
     if (req.file && req.file.filename) {
       preuve = `/images/${req.file.filename}`;
       // Supprimer l'ancien fichier image si un nouveau fichier a été téléchargé
