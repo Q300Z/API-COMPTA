@@ -79,10 +79,18 @@ exports.modifyFac = async (req, res, next) => {
         }
       : { ...req.body.fac };
 
-    await Fac.updateOne({ _id: req.params.id }, updatedFac);
-    return res
-      .status(200)
-      .json({ message: "Facture modifiée !", data: { preuve: preuve } });
+    Fac.updateOne({ _id: req.params.id }, updatedFac)
+      .then(() => {
+        return res
+          .status(200)
+          .json({ message: "Facture modifiée !", data: { preuve: preuve } });
+      })
+      .catch((err) => {
+        console.log(err);
+        return res.status(500).json({
+          message: `Erreur lors de la modification de la facture : ${err}`,
+        });
+      });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
