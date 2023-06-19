@@ -77,7 +77,7 @@ exports.modifyFac = async (req, res, next) => {
           ...JSON.parse(req.body.fac),
           preuve: preuve,
         }
-      : { ...req.body };
+      : { ...req.body.fac };
 
     await Fac.updateOne({ _id: req.params.id }, updatedFac);
     return res
