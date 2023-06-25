@@ -1,13 +1,14 @@
 const express = require("express");
 const connectDB = require("./db/mongoDB");
 const rssRoute = require("./routes/routeFac");
+const userRoutes = require("./routes/user");
 
 const path = require("path");
 
 const app = express();
 
 const port = 3001;
-const host = "0.0.0.0";
+const host = process.env.API_URL || "0.0.0.0";
 
 try {
   const db = connectDB();
@@ -28,8 +29,11 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+app.use("/api/auth", userRoutes);
+
 app.use("/images", express.static(path.join(__dirname, "images")));
-app.use(rssRoute);
+app.use("/api/factures", rssRoute);
 
 app.listen(port, host, () => {
   console.log(`Serveur à l'écoute sur http://${host}:${port} `);
