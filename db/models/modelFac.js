@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const facSchema = mongoose.Schema({
   _id: { type: mongoose.Schema.Types.ObjectId },
@@ -7,6 +7,7 @@ const facSchema = mongoose.Schema({
   date: { type: String, required: true },
   preuve: { type: String },
   categorie: { type: String },
-});
+  owner: { type: mongoose.Schema.Types.ObjectId }
+})
 
-module.exports = mongoose.model("Fac", facSchema);
+module.exports = mongoose.model('Fac', facSchema)
