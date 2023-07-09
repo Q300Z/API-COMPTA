@@ -12,7 +12,7 @@ const host = process.env.API_URL || 'localhost'
 
 try {
   const db = connectDB()
-  db.then(() => {})
+  db.then(() => { })
 } catch (error) {
   console.error(error)
 }

@@ -5,8 +5,7 @@ const uri = `mongodb://172.17.0.3:27017/${db}` || `mongodb://192.168.1.100:27017
 
 async function connectDB () {
   try {
-    console.log(process.env.DB_URL)
-    await mongoose.connect(uri, {
+    mongoose.connect(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
